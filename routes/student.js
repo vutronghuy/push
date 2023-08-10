@@ -36,5 +36,27 @@ router.post('/edit/:id', async (req, res) => {
     .catch(() => console.log("edit failed"));
     res.redirect('/student');
 })
+router.post('/search', async (req, res) => {
+    var keyword = req.body.keyword;
+    var students = await StudentModel.find({name : new RegExp(keyword, "i")})
+    res.render('student/studentList', { students : students });
+})
+
+router.get('/sort/gpa/asc', async (req, res) => {
+    var students = await StudentModel.find().sort({gpa :1});
+    res.render('student/studentList', { students : students });
+})
+router.get('/sort/gpa/desc', async (req, res) => {
+    var students = await StudentModel.find().sort({gpa : -1});
+    res.render('student/studentList', { students : students });
+})
+router.get('/sort/dob/asc', async (req, res) => {
+    var students = await StudentModel.find().sort({dob :1});
+    res.render('student/studentList', { students : students });
+})
+router.get('/sort/dob/desc', async (req, res) => {
+    var students = await StudentModel.find().sort({dob : -1});
+    res.render('student/studentList', { students : students });
+})
 
 module.exports = router;
