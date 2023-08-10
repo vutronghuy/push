@@ -4,7 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var indexRouter = require('./routes/index');
+var indexRouter = require('./routes/student');
 var usersRouter = require('./routes/users');
 //khai báo route
 var studentRouter = require('./routes/student');
